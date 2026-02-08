@@ -12,7 +12,8 @@ serveur web classique.
 ├── apropos/
 │   └── index.html
 ├── contact/
-│   └── index.html
+│   ├── index.php
+│   └── submit.php
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
@@ -38,6 +39,18 @@ python3 -m http.server 8080
 ```
 
 Puis rendez-vous sur `http://localhost:8080`.
+
+## Démarrage local avec PHP
+
+Pour tester le formulaire en PHP, lancez le serveur intégré :
+
+```bash
+php -S localhost:8000 -t .
+```
+
+Puis ouvrez `http://localhost:8000/contact/`. Le script `contact/submit.php` traite les
+soumissions via `mail()`. Assurez-vous que votre environnement local autorise l'envoi
+d'emails (configuration SMTP ou sendmail selon votre système).
 
 ## Stack Docker (local)
 
