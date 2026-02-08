@@ -1,0 +1,12 @@
+Options -Indexes
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^apropos/?$ /apropos/index.html [L]
+RewriteRule ^contact/?$ /contact/index.html [L]
+RewriteRule ^$ /index.html [L]
+
+ErrorDocument 404 /404.html
