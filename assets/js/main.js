@@ -61,6 +61,7 @@ const contactForm = document.querySelector("[data-contact-form]");
 if (contactForm) {
   const messageBox = document.querySelector("[data-form-message]");
   const emailInput = contactForm.querySelector("input[type=\"email\"]");
+  const contactEmails = contactForm.dataset.contactEmails || "";
 
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -89,6 +90,20 @@ if (contactForm) {
       messageBox.textContent = "Merci de compléter les champs requis avec un email valide.";
       messageBox.style.color = "#b42318";
       return;
+    }
+
+    const nameValue = contactForm.querySelector("#name")?.value.trim() || "";
+    const subjectValue = contactForm.querySelector("#subject")?.value.trim() || "";
+    const messageValue = contactForm.querySelector("#message")?.value.trim() || "";
+    const recipients = contactEmails || emailInput.value.trim();
+
+    const subject = encodeURIComponent(`[Contact 3D] ${subjectValue || "Demande de contact"}`);
+    const body = encodeURIComponent(
+      `Nom: ${nameValue}\nEmail: ${emailValue}\nSujet: ${subjectValue}\n\nMessage:\n${messageValue}`
+    );
+
+    if (recipients) {
+      window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
     }
 
     messageBox.textContent = "Merci, on revient vers vous rapidement.";
